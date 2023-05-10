@@ -1,0 +1,14 @@
+.avatar__image {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    border-radius: 50%;
+    object-fit: cover;
+    box-sizing: border-box;
+}
+
+@media screen and (min-width: 1280px) {
+    .avatar__image {
+        margin: 0;
+    }
+}

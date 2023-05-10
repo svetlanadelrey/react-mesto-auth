@@ -1,0 +1,6 @@
+.gallery__wrapper {
+    max-width: 241px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}

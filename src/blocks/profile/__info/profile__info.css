@@ -1,0 +1,19 @@
+.profile__info {
+    padding: 26px 0 26px;
+    display: grid;
+    grid-template-areas: "title btn"
+                        "paragraph paragraph";
+    margin: 0 auto;
+    justify-items: center;
+    align-items: center;
+    column-gap: 10px;
+    row-gap: 14px;
+}
+
+@media screen and (min-width: 768px) {
+    .profile__info {
+        justify-items: start;
+        margin-left: 30px;
+        column-gap: 18px;
+    }
+}
