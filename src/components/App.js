@@ -9,6 +9,10 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import { EditProfilePopup } from './EditProfilePopup';
 import { EditAvatarPopup } from './EditAvatarPopup';
 import { AddPlacePopup } from './AddPlacePopup';
+import { Route, Routes } from 'react-router-dom';
+import { Login } from './Login';
+import { Register } from './Register';
+import { ProtectedRoute } from './ProtectedRoute';
 
 function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
@@ -17,6 +21,7 @@ function App() {
   const [selectedCard, setSelectedCard] = React.useState({});
   const [currentUser, setCurrentUser] = React.useState({});
   const [cards, setCards] = React.useState([]);
+  const [loggedIn, setLoggedIn] = React.useState(false);
 
   React.useEffect(() => {
     Promise.all([
@@ -98,10 +103,40 @@ function App() {
     .catch(err => console.log(err));
   }
 
+  const handleLogin = () => {
+    setLoggedIn(true);
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
         <Header />
+        <Routes>
+          <Route 
+            path="/main"
+            element={
+              <ProtectedRoute
+                path="/main"
+                loggedIn={loggedIn}
+                component={Main}
+              />
+            }
+          />
+          <Route 
+            path="/sign-up"
+            element={
+              <Register />
+            }
+          />
+          <Route 
+            path="/sign-in"
+            element={
+              <Login
+                onLogin={handleLogin}
+              />
+            }
+          />
+        </Routes>
         <Main
           onEditAvatar={handleEditAvatarClick}
           onEditProfile={handleEditProfileClick}
