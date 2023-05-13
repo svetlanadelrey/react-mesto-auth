@@ -9,7 +9,7 @@ function PopupWithForm({name, isOpen, title, children, buttonText, onClose, onSu
                 </form>
                 <button className="popup__button-close" onClick={onClose} type="button" aria-label="Закрыть"/>
             </div>
-    </div>
+        </div>
     );
 }
  export { PopupWithForm };

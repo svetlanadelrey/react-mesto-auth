@@ -13,15 +13,19 @@ import { Route, Routes } from 'react-router-dom';
 import { Login } from './Login';
 import { Register } from './Register';
 import { ProtectedRoute } from './ProtectedRoute';
+import { InfoToolTip } from './InfoTooltip';
+import * as auth from '../utils/auth';
 
 function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
+  const [isInfoToolTip, setIsInfoToolTip] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState({});
   const [currentUser, setCurrentUser] = React.useState({});
   const [cards, setCards] = React.useState([]);
   const [loggedIn, setLoggedIn] = React.useState(false);
+  const [userData, setUserData] = React.useState({email: '', password: ''});
 
   React.useEffect(() => {
     Promise.all([
@@ -38,9 +42,11 @@ function App() {
   const handleEditAvatarClick = () => {
     setIsEditAvatarPopupOpen(true);
   }
+
   const handleEditProfileClick = () => {
     setIsEditProfilePopupOpen(true);
   }
+
   const handleAddPlaceClick = () => {
     setIsAddPlacePopupOpen(true);
   }
@@ -103,21 +109,41 @@ function App() {
     .catch(err => console.log(err));
   }
 
-  const handleLogin = () => {
+  const handleLogin = ({email, password}) => {
+    auth.authorize(email, password)
+    .then((data) => {
+      setUserData(data)
+    })
     setLoggedIn(true);
+  }
+
+  const handleSignOut = () => {
+    setLoggedIn(false);
+    setUserData({email: ''})
+  }
+
+  const handleRegister = () => {
+    setIsInfoToolTip(true);
   }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
-        <Header />
+        <Header loggedIn={loggedIn} handleSignOut={handleSignOut} />
         <Routes>
           <Route 
-            path="/main"
+            path="/"
             element={
               <ProtectedRoute
-                path="/main"
+                userData={userData}
                 loggedIn={loggedIn}
+                onEditAvatar={handleEditAvatarClick}
+                onEditProfile={handleEditProfileClick}
+                onAddPlace={handleAddPlaceClick}
+                onCardClick={handleCardClick}
+                cards={cards}
+                onCardLike={handleCardLike}
+                onCardDelete={handleCardDelete}
                 component={Main}
               />
             }
@@ -125,27 +151,16 @@ function App() {
           <Route 
             path="/sign-up"
             element={
-              <Register />
+              <Register onRegister={handleRegister} />
             }
           />
           <Route 
             path="/sign-in"
             element={
-              <Login
-                onLogin={handleLogin}
-              />
+              <Login onLogin={handleLogin} />
             }
           />
         </Routes>
-        <Main
-          onEditAvatar={handleEditAvatarClick}
-          onEditProfile={handleEditProfileClick}
-          onAddPlace={handleAddPlaceClick}
-          onCardClick={handleCardClick}
-          cards={cards}
-          onCardLike={handleCardLike}
-          onCardDelete={handleCardDelete}
-        />
         <Footer />
         <EditProfilePopup 
           isOpen={isEditProfilePopupOpen} 
@@ -170,6 +185,10 @@ function App() {
         />
         <ImagePopup
           card={selectedCard}
+          onClose={closeAllPopups}
+        />
+        <InfoToolTip 
+          isOpen={isInfoToolTip}
           onClose={closeAllPopups}
         />
       </div>

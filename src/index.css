@@ -43,3 +43,10 @@
 @import url('/src/blocks/view-image-popup/__image/view-image-popup__image.css');
 @import url('/src/blocks/view-image-popup/__title/view-image-popup__title.css');
 @import url('/src/blocks/error/error.css');
+@import url('/src/blocks/auth/auth.css');
+@import url('/src/blocks/auth/__form/auth__form.css');
+@import url('/src/blocks/auth/__title/auth__title.css');
+@import url('/src/blocks/auth/__input/auth__input.css');
+@import url('/src/blocks/auth/__button/auth__button.css');
+@import url('/src/blocks/auth/__login-title/auth__login-title.css');
+@import url('/src/blocks/auth/__login/auth__login.css');
