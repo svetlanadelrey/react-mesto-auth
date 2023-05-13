@@ -1,44 +1,50 @@
 import React from "react";
 
-const Login = ({onLogin}) => {
-    const [email, setEmail] = React.useState('');
-    const [password, setPassword] = React.useState('');
+function Login({onLogin}) {
+    const [userData, setUserData] = React.useState({
+        email: '',
+        password: ''
+    })
 
-    const handleChangeEmail = (e) => {
-        setEmail(e.target.value);
-    }
+    const handleChange = (e) => {
+        const {name, value} = e.target;
+    
+        setUserData({
+          ...userData,
+          [name]: value
+        });
+      }
 
-    const handleChangePassword = (e) => {
-        setPassword(e.target.value);
-    }
-
-    const handleSubmit = (e) => {
+      const handleSubmit = (e) => {
         e.preventDefault();
+        const {email, password} = userData;
         onLogin({email, password});
     }
 
     return (
-        <div className="login">
+        <div className="auth">
             <form 
-                className="login__form"
+                className="auth__form"
                 action="#"
                 noValidate
                 onSubmit={handleSubmit}
             >
-                <h2 className="login__title">Вход</h2>
+                <h2 className="auth__title">Вход</h2>
                 <input 
+                    className="auth__input"
                     type="email" 
                     name="email" 
                     placeholder="Email"
-                    onChange={handleChangeEmail}
+                    onChange={handleChange}
                 />
                 <input 
+                    className="auth__input"
                     type="password" 
                     name="password" 
                     placeholder="Пароль"
-                    onChange={handleChangePassword}
+                    onChange={handleChange}
                 />
-                <button className="login__button" type="submit">Войти</button>
+                <button className="auth__button" type="submit">Войти</button>
             </form>
         </div>
     )
