@@ -39,6 +39,7 @@
 @import url('/src/blocks/popup/__input/_type/popup__input_type_error.css');
 @import url('/src/blocks/popup/__input-error/popup__input-error.css');
 @import url('/src/blocks/popup/__input-error/_visible/popup__input-error_visible.css');
+@import url('/src/blocks/popup/__tooltip-icon/popup__tooltip-icon.css');
 @import url('/src/blocks/view-image-popup/__container/view-image-popup__container.css');
 @import url('/src/blocks/view-image-popup/__image/view-image-popup__image.css');
 @import url('/src/blocks/view-image-popup/__title/view-image-popup__title.css');
@@ -49,4 +50,9 @@
 @import url('/src/blocks/auth/__input/auth__input.css');
 @import url('/src/blocks/auth/__button/auth__button.css');
 @import url('/src/blocks/auth/__login-title/auth__login-title.css');
+@import url('/src/blocks/auth/__login-link/auth__login-link.css');
 @import url('/src/blocks/auth/__login/auth__login.css');
+@import url('/src/blocks/header/__link/header__link.css');
+@import url('/src/blocks/header/__link/_signout/header__link_signout.css');
+@import url('/src/blocks/header/__email/header__email.css');
+@import url('/src/blocks/header/__container/header__container.css');
