@@ -39,7 +39,7 @@ function AddPlacePopup({isOpen, onClose, onAddPlace}) {
             placeholder="Название"
             minLength={2}
             maxLength={30}
-            required=""
+            required
             value={cardName || ""}
             onChange={handleCardName}
           />
@@ -49,7 +49,7 @@ function AddPlacePopup({isOpen, onClose, onAddPlace}) {
             type="url"
             name="link"
             placeholder="Ссылка на картинку"
-            required=""
+            required
             value={cardLink || ""}
             onChange={handleCardLink}
           />

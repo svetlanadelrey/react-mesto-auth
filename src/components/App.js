@@ -130,7 +130,7 @@ function App() {
     .then((data) => {
       if(data.token) {
         setLoggedIn(true);
-        handleCheckToken();
+        setEmail(email);
       }
       localStorage.setItem("jwt", data.token);
     })

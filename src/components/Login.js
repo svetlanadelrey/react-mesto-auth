@@ -26,7 +26,6 @@ function Login({onLogin}) {
             <form 
                 className="auth__form"
                 action="#"
-                noValidate
                 onSubmit={handleSubmit}
             >
                 <h2 className="auth__title">Вход</h2>
@@ -37,6 +36,7 @@ function Login({onLogin}) {
                     placeholder="Email"
                     onChange={handleChange}
                     value={userData.email}
+                    required
                 />
                 <input 
                     className="auth__input"
@@ -45,6 +45,7 @@ function Login({onLogin}) {
                     placeholder="Пароль"
                     onChange={handleChange}
                     value={userData.password}
+                    required
                 />
                 <button className="auth__button" type="submit">Войти</button>
             </form>
