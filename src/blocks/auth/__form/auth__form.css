@@ -1,6 +1,6 @@
 .auth__form {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    align-content: space-between;
     min-width: 358px;
 }

@@ -127,12 +127,12 @@ function App() {
 
   const handleLogin = ({email, password}) => {
     auth.authorize(email, password)
-    .then(() => {
-      localStorage.setItem("jwt");
-      setUserData({email: '', password: ''});
-      setLoggedIn(true);
-      setEmail(email);
-      navigate("/", { replace: true });
+    .then((data) => {
+      if(data.token) {
+        setLoggedIn(true);
+        handleCheckToken();
+      }
+      localStorage.setItem("jwt", data.token);
     })
     .catch(err => console.log(err))
   }
