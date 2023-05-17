@@ -10,5 +10,9 @@
     line-height: 17px;
     outline: none;
     padding: 0;
-    margin-bottom: 5px;
+    margin-bottom: 30px;
+}
+
+.auth__input:last-of-type {
+    margin-bottom: 0;
 }
