@@ -1,10 +1,13 @@
 import React from "react";
+import successIcon from '../images/success.svg';
+import failIcon from '../images/fail.svg';
 
-function InfoToolTip({name, title, isOpen, onClose}) {
+function InfoToolTip({isOpen, onClose, isRegisterSuccess}) {
     return (
-        <div className={`popup popup_type_${name} ${isOpen && 'popup_opened'}`}>
+        <div className={`popup ${isOpen ? "popup_opened" : ""}`}>
             <div className="popup__container">
-                <h2 className="popup__title">{title}</h2>
+                <img className="popup__tooltip-icon" src={isRegisterSuccess ? successIcon : failIcon} alt=""/>
+                <h2 className="popup__title">{isRegisterSuccess ? 'Вы успешно зарегистрировались!' : 'Что-то пошло не так! Попробуйте ещё раз.'}</h2>
                 <button className="popup__button-close" onClick={onClose} type="button" aria-label="Закрыть"/>
             </div>
         </div>

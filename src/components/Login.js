@@ -36,6 +36,7 @@ function Login({onLogin}) {
                     name="email" 
                     placeholder="Email"
                     onChange={handleChange}
+                    value={userData.email}
                 />
                 <input 
                     className="auth__input"
@@ -43,6 +44,7 @@ function Login({onLogin}) {
                     name="password" 
                     placeholder="Пароль"
                     onChange={handleChange}
+                    value={userData.password}
                 />
                 <button className="auth__button" type="submit">Войти</button>
             </form>
