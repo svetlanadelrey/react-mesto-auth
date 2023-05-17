@@ -128,6 +128,7 @@ function App() {
   const handleLogin = ({email, password}) => {
     auth.authorize(email, password)
     .then(() => {
+      localStorage.setItem("jwt");
       setUserData({email: '', password: ''});
       setLoggedIn(true);
       setEmail(email);
@@ -140,7 +141,9 @@ function App() {
     setLoggedIn(false);
     setEmail('');
     navigate("/sign-in", { replace: true });
+    localStorage.removeItem("jwt");
   }
+
   const handleRegister = ({email, password}) => {
     auth.register(email, password)
     .then(() => {
